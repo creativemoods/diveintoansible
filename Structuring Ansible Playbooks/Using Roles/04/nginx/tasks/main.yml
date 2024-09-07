@@ -24,10 +24,23 @@
   tags:
     - always
 
-- name: Template index.html-ansible_managed.j2 to index.html on target
+- name: Template index.html.j2 to index.html on target
   template:
-    src: index.html-ansible_managed.j2
+    src: index.html-stacker.j2
     dest: "{{ nginx_root_location }}/index.html"
     mode: 0644
+  tags:
+    - deploy-app
+
+- name: Install unzip
+  package:
+    name: unzip
+    state: latest
+
+- name: Unarchive playbook stacker game
+  unarchive:
+    src: playbook_stacker.zip
+    dest: "{{ nginx_root_location }}"
+    mode: 0755
   tags:
     - deploy-app

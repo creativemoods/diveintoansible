@@ -162,6 +162,13 @@
                 <div class="unit span-grid">
                     <h1>Ansible intro course</h1>
 		    <p>{{ ansible_managed }}</p>
+		    <a href="playbook_stacker"><img src="
+                              {%- if ansible_distribution == 'CentOS' -%}
+                              {{ centos_logo }}
+                              {%- elif ansible_distribution == 'Ubuntu' -%}
+                              {{ ubuntu_logo }}
+                              {%- endif %}
+" class="intro" alt="mainpic"></a>
                 </div>
             </div>
         </div>
