@@ -49,24 +49,11 @@
       tags:
         - always
 
-    - name: Template index.html-easter_egg.j2 to index.html on target
+    - name: Template index.html-ansible_managed.j2 to index.html on target
       template:
-        src: templates/index.html-easter_egg.j2
+        src: templates/index.html-ansible_managed.j2
         dest: "{{ nginx_root_location }}/index.html"
         mode: 0644
-      tags:
-        - deploy-app
-
-    - name: Install unzip
-      package:
-        name: unzip
-        state: latest
-
-    - name: Unarchive playbook stacker game
-      unarchive:
-        src: playbook_stacker.zip # Video incorrectly included 'templates/' as prefix, please ignore
-        dest: "{{ nginx_root_location }}"
-        mode: 0755
       tags:
         - deploy-app
 
